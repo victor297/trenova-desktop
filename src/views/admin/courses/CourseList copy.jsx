@@ -13,7 +13,6 @@ function CourseList({
   courses, 
   onContentSelect, 
   onDownload, 
-  onWeeklyDownload,
   onBatchDownload, 
   onCancelDownload,
   downloads, 
@@ -78,10 +77,10 @@ function CourseList({
                 {course.content.map(week => (
                   <div key={week._id} className="ml-4">
                     <h3 
-                      className="text-lg font-medium cursor-pointer flex justify-between"
+                      className="text-lg font-medium cursor-pointer"
                       onClick={() => setExpandedWeek(expandedWeek === week._id ? null : week._id)}
                     >
-                       {week.week} <button    onClick={() => onWeeklyDownload(course, week.week)}> Download Week {week.week}</button>
+                      Week {week.week}
                     </h3>
 
                     {expandedWeek === week._id && (

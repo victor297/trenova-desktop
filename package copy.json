@@ -1,9 +1,9 @@
 {
-  "name": "Learnnova-desktop",
+  "name": "trenova-desktop",
   "version": "1.0.0",
   "private": true,
-  "description": "Learnnova Desktop",
-  "author": "Learnnova",
+  "description": "Trenova Desktop",
+  "author": "Trenova",
   "homepage": ".",
   "main": "main.js",
   "scripts": {
@@ -77,16 +77,5 @@
     "linux": {
       "target": "AppImage"
     }
-  },
-  "win": {
-    "target": "squirrel",
-    "icon": "src/assets/img/auth/auth.png",
-    "artifactName": "${productName}-setup-${version}.${ext}"
-  },
-  "squirrelWindows": {
-    "shortcutName": "Learnnova",
-    "allowToChangeInstallationDirectory": true,
-    "createDesktopShortcut": true,
-    "createStartMenuShortcut": true
   }
 }

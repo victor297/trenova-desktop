@@ -11,7 +11,7 @@ const Question = () => {
   const [term, setTerm] = useState("");
   const dispatch = useDispatch();
   const { userInfo, questions } = useSelector((state) => state.auth);
-
+// console.log(userInfo,"log")
   // Determine the appropriate school ID based on user role
   const schoolId = userInfo.role === "schoolAdmin" ? userInfo._id : userInfo.schoolID;
 
@@ -35,7 +35,9 @@ const Question = () => {
   ];
 
   const { data: questionsData = [], isLoading, isError, error } = useGetCoursesQuestionsQuery(
-    {
+    {class:  userInfo?.role === "schoolAdmin" || userInfo?.role ==="admin"
+    ? findClass
+    : userInfo?.class,
       name: userInfo?.subjectAccess,
       term: userInfo?.termAccess,
       school: schoolId,
@@ -56,12 +58,18 @@ const Question = () => {
         toast.error("No cached data available.");
       } 
     }
+    
   }, [questionsData, dispatch]);
+  useEffect(() => {
+    setFindClass(userInfo?.role === "schoolAdmin" || userInfo?.role ==="admin"
+    ? ""
+    : userInfo?.class)
+  },[])
 
   // Debugging: Log questions and selected filters
-  console.log("Questions Data:", questions);
-  console.log("Selected Class:", findClass);
-  console.log("Selected Term:", term);
+  // console.log("Questions Data:", questions);
+  // console.log("Selected Class:", findClass);
+  // console.log("Selected Term:", term);
 
   const filteredQuestions = questions?.filter((q) => {
     const matchesClass = findClass ? q.class === findClass : true;
@@ -70,13 +78,11 @@ const Question = () => {
   });
 
   if (isLoading) return <Loader />;
-  if (isError) {
-    toast.error(error.error || "An error occurred.");
-    return <h2>{error?.data?.message || "Failed to load questions."}</h2>;
-  }
+
 
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5">
+      {isError&& <h2 className="text-red-600">{error?.data?.message || "Failed to load questions."}</h2>}
       <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
         {/* Filter Header */}
         <div className="mb-4 mt-5 flex flex-col justify-between px-4 md:flex-row md:items-center">
@@ -109,25 +115,27 @@ const Question = () => {
                 ))}
               </select>
             </div>
-            <div>
-              <label htmlFor="class" className="text-sm block font-medium text-gray-700">
-                Class
-              </label>
-              <select
-                id="class"
-                name="class"
-                value={findClass}
-                onChange={(e) => setFindClass(e.target.value)}
-                className="mt-1 w-full rounded-md border border-gold p-2 focus:border-gold focus:outline-none focus:ring focus:ring-yellow-500"
-              >
-                <option value="">Select Class</option>
-                {classOptions.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {userInfo?.role === "schoolAdmin" || userInfo?.role === "admin"
+              ? <div>
+                <label htmlFor="class" className="text-sm block font-medium text-gray-700">
+                  Class
+                </label>
+                <select
+                  id="class"
+                  name="class"
+                  value={findClass}
+                  onChange={(e) => setFindClass(e.target.value)}
+                  className="mt-1 w-full rounded-md border border-gold p-2 focus:border-gold focus:outline-none focus:ring focus:ring-yellow-500"
+                >
+                  <option value="">Select Class</option>
+                  {classOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              : null}
           </div>
         </div>
 

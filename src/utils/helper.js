@@ -13,4 +13,12 @@ export const getLocalGreeting = () => {
     }
   
     return greeting;
-  };
+};
+  
+export const removeSlashes = (inputString) => {
+  return inputString.replace(/[^a-zA-Z0-9_().]/g, ' ');
+}
+export function roundUpToDecimal(number, decimalPlaces = 1) {
+  const factor = Math.pow(10, decimalPlaces);
+  return Math.ceil(number * factor) / factor;
+}

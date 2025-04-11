@@ -1,0 +1,85 @@
+{
+    "name": "trenova-desktop",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Trenova Desktop",
+    "author": "Trenova",
+    "homepage": ".",
+    "main": "main.js",
+    "scripts": {
+        "dev": "vite",
+        "electron": "electron .",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make"
+    },
+    "dependencies": {
+        "@headlessui/react": "^2.2.0",
+        "@react-pdf-viewer/core": "^3.12.0",
+        "@react-pdf-viewer/default-layout": "^3.12.0",
+        "@react-pdf/renderer": "^4.3.0",
+        "@reduxjs/toolkit": "^2.5.0",
+        "crypto-js": "^4.2.0",
+        "electron-squirrel-startup": "^1.0.1",
+        "electron-store": "^8.2.0",
+        "node-fetch": "^3.3.2",
+        "pdfjs-dist": "^3.11.174",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-hook-form": "^7.54.2",
+        "react-hot-toast": "^2.4.1",
+        "react-icons": "^5.4.0",
+        "react-pdf": "^9.2.1",
+        "react-player": "^2.16.0",
+        "react-redux": "^9.2.0",
+        "react-router-dom": "^6.28.1"
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^7.6.0",
+        "@electron-forge/maker-deb": "^7.6.0",
+        "@electron-forge/maker-rpm": "^7.6.0",
+        "@electron-forge/maker-squirrel": "^7.6.0",
+        "@electron-forge/maker-zip": "^7.6.0",
+        "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
+        "@electron-forge/plugin-fuses": "^7.6.0",
+        "@electron/fuses": "^1.8.0",
+        "@eslint/js": "^9.17.0",
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "@vitejs/plugin-react": "^4.3.4",
+        "autoprefixer": "^10.4.20",
+        "electron": "^33.3.1",
+        "eslint": "^9.17.0",
+        "eslint-plugin-react": "^7.37.2",
+        "eslint-plugin-react-hooks": "^5.0.0",
+        "eslint-plugin-react-refresh": "^0.4.16",
+        "globals": "^15.14.0",
+        "postcss": "^8.4.49",
+        "tailwindcss": "^3.4.17",
+        "vite": "^6.0.5"
+    },
+    "build": {
+        "appId": "com.learnova.myapp",
+        "productName": "learnova",
+        "icon": "src/assets/img/auth/auth.png",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "build/**/*",
+            "main.js"
+        ],
+        "win": {
+            "target": "nsis"
+        },
+        "mac": {
+            "target": "dmg"
+        },
+        "linux": {
+            "target": "AppImage"
+        }
+    }
+}

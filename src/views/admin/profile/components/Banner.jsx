@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const Banner = () => {
   const { userInfo } = useSelector((state) => state.auth);
+  console.log(userInfo)
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
@@ -37,6 +38,11 @@ const Banner = () => {
         <div className="flex flex-col items-center justify-center">
           <p className="text-sm font-normal text-gray-600">
             {userInfo.username}
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-sm font-normal text-gray-600">
+            {userInfo?.class}
           </p>
         </div>
       </div>

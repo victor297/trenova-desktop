@@ -1,12 +1,27 @@
-import React from 'react';
+import ReactPlayer from 'react-player'
 
-const VideoPlayer = ({ url }) => {
+
+function VideoPlayer({ url }) {
+  // console.log(url,"url")
   return (
-    <video controls width="600">
-      <source src={url} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  );
-};
+    <div className="aspect-w-16 aspect-h-9">
+      <ReactPlayer
+        url={url}
+        width="100%"
+        height="100%"
+        controls
+        playing
+        config={{
+          file: {
+            attributes: {
+              controlsList: 'nodownload'
+            },
+            forceVideo: true
+          }
+        }}
+      />
+    </div>
+  )
+}
 
-export default VideoPlayer;
+export default VideoPlayer

@@ -4,16 +4,17 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: './auth-sub' 
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        name: 'trenova', // Replace with your app's name
-        setupExe: 'trenova.exe', // Name of the installer
+        name: 'Learnnova', // Replace with your app's name
+        setupExe: 'Learnnova.exe', // Name of the installer
         noMsi: true, // Disable MSI creation (optional)
-        shortcutName: 'trenova', // The name for the shortcut
+        shortcutName: 'Learnnova', // The name for the shortcut
       },
     },
     {

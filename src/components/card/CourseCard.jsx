@@ -3,6 +3,10 @@ import { AiFillEye } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdDownload } from "react-icons/md";
+import creative from "@/assets/img/creative.jpg"
+import diction from "@/assets/img/diction.jpg"
+import library from "@/assets/img/library.jpg"
+import math from "@/assets/img/math.jpg"
 
 
 const CourseCard = ({
@@ -31,7 +35,12 @@ const CourseCard = ({
       <div className="h-full w-full">
         <div className="relative w-full">
           <img
-            src={image}
+src={
+  title.toLowerCase().includes("math") ? math :
+  title.toLowerCase().includes("libra") ? library :
+  title.toLowerCase().includes("diction") ? diction :
+  creative
+}
             className="mb-3 h-full w-full rounded-xl 3xl:h-full 3xl:w-full"
             alt=""
           />

@@ -13,10 +13,14 @@ const authSlice = createSlice({
       const userInfo = action.payload.data.user;
       state.userInfo = userInfo;
 
-      // Save user info and expiration time in local storage
+      // Save user info in local storage
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-      const expirationTime = Date.now() + 30 * 24 * 60 * 60 * 1000; // 30 days
+      // Log the type of expirationDate to understand what we're saving
+      // console.log(typeof action.payload.data.user.expirationDate, action.payload.data.user.expirationDate, "expirationDate");
+
+      // Save expiration time based on its type (ISO string or timestamp)
+      const expirationTime = action.payload.data.user.expirationDate;
       localStorage.setItem("expirationTime", expirationTime);
     },
 
@@ -40,8 +44,13 @@ const authSlice = createSlice({
 
     checkExpiration: (state) => {
       const expirationTime = localStorage.getItem("expirationTime");
-      if (expirationTime && Date.now() > expirationTime) {
-        // Clear state and log the user out if time has expired
+      const parsedExpirationTime = Date.parse(expirationTime);
+
+      // Log to debug expiration time
+      // console.log(expirationTime, parsedExpirationTime, "expirationTime");
+
+      if (expirationTime && !isNaN(parsedExpirationTime) && Date.now() > parsedExpirationTime) {
+        alert("Session expired, logging out...");
         state.userInfo = null;
         state.questions = null;
         localStorage.clear();

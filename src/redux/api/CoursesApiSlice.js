@@ -17,12 +17,13 @@ export const courseApiSlice = apiSlice.injectEndpoints({
         if (params.class) queryString += `class=${params.class}&`;
         if (params.term) queryString += `term=${params.term}&`;
         if (params.school) queryString += `school=${params.school}&`;
+        if (params.name) queryString += `name=${params.name}&`; // Already comma-separated
 
         const url = `${COURSES_URL}${queryString ? `?${queryString}` : ""}`;
         return { url };
       },
       providesTags: ["Course"],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 5, 
     }),
     getCoursesQuestions: builder.query({
       query: (params) => {

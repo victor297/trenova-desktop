@@ -29,7 +29,7 @@ export default function HomeNav() {
 
   const logoutHandler = () => {
     try {
-      logOutApi();
+      logOutApi({ id:userInfo?._id, role:userInfo?.role});
       dispatch(logout());
       navigate("/auth/login");
     } catch (error) {

@@ -38,7 +38,6 @@ export default function Modal({ isOpen, onClose, school, refetch }) {
       });
       toast.success("updated succefully");
       refetch();
-      console.log(data);
       onClose();
     } catch (err) {
       console.log("err", err);

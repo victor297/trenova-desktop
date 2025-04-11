@@ -1,4 +1,5 @@
 import nft1 from "@/assets/img/nfts/NftBanner2.png";
+import VideoPlayer from "./VideoPlayer";
 
 const Banner = () => {
   return (
@@ -12,6 +13,7 @@ const Banner = () => {
           view click on the eye icon top right
         </h4>
       </div>
+      <VideoPlayer/>
     </div>
   );
 };

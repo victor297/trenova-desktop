@@ -16,15 +16,27 @@ import { BsBookFill, BsQuestionCircle } from "react-icons/bs";
 import { RiBookOpenLine } from "react-icons/ri";
 import Question from "./views/admin/questions/Question";
 import CoursePage from "./views/admin/courses/CoursePage";
+import Downloads from "./views/admin/courses/Downloads";
+import SignUp from "./views/auth/signIn/SignUp";
+import ContentView from "./views/admin/courses/ContentView";
 
 // Define your route configuration
 export const routes = [
+  // {
+  //   name: "Download-Courses",
+  //   layout: "/admin",
+  //   path: "download-course",
+  //   icon: <RiBookOpenLine className="h-6 w-6" />,
+  //   component: <CoursePage />,
+  //   secondary: true,
+  // },         <Route path="/view" element={<ContentView />} />
+
   {
-    name: "Download-Courses",
+    name: "Home",
     layout: "/admin",
-    path: "download-course",
-    icon: <RiBookOpenLine className="h-6 w-6" />,
-    component: <CoursePage />,
+    path: "view",
+    // icon: <RiBookOpenLine className="h-6 w-6" />,
+    component: <ContentView />,
     secondary: true,
   },
   {
@@ -48,7 +60,7 @@ export const routes = [
     layout: "/admin",
     path: "downloads",
     icon: <MdDownloadForOffline className="h-6 w-6" />,
-    component: <AllCourse />,
+    component: <Downloads />,
     secondary: true,
   },
   {
@@ -64,5 +76,12 @@ export const routes = [
     path: "login",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+  },
+  {
+    name: "Sign Up",
+    layout: "/auth",
+    path: "signup",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <SignUp />,
   },
 ];

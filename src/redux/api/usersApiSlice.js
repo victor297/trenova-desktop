@@ -1,11 +1,18 @@
 import { apiSlice } from "./apiSlice";
-import { USERS_URL } from "../constants";
+import { LEARNERS_URL, USERS_URL } from "../constants";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/login`,
+        url: `${USERS_URL}/logindesktop`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    learnerLogin: builder.mutation({
+      query: (data) => ({
+        url: `${LEARNERS_URL}/logindesktop`,
         method: "POST",
         body: data,
       }),
@@ -17,9 +24,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    logout: builder.mutation({
+    learnersignup: builder.mutation({
+      query: (data) => ({
+        url: `${LEARNERS_URL}`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    logout1: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
+        method: "GET",
+      }),
+    }),
+    logout: builder.mutation({
+      query: ({id,role}) => ({
+        url: `${USERS_URL}/logout/${id}/${role}`,
         method: "GET",
       }),
     }),
@@ -80,8 +100,10 @@ export const {
   useGetUsersQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useLearnerLoginMutation,
   useProfileMutation,
   useGetUserDetailsQuery,
   useForgetPasswordMutation,
   useResetPasswordMutation,
+  useLearnersignupMutation
 } = userApiSlice;

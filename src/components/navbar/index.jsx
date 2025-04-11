@@ -16,10 +16,11 @@ const Navbar = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [logOutApi] = useLogoutMutation();
-
+  const { userInfo } = useSelector((state) => state.auth);
+console.log(userInfo,"new userInfo")
   const logoutHandler = () => {
     try {
-      logOutApi();
+      logOutApi({ id:userInfo?._id, role:userInfo?.role});
       dispatch(logout());
       navigate("/auth/login");
     } catch (error) {
@@ -27,7 +28,6 @@ const Navbar = (props) => {
     }
   };
 
-  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">

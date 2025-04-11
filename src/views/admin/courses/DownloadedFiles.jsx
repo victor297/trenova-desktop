@@ -1,25 +1,27 @@
-import { FiVideo, FiFile } from 'react-icons/fi'
+import { FiVideo, FiFile, FiTrash2 } from 'react-icons/fi'
 
-function DownloadedFiles({ files, onSelect }) {
+function DownloadedFiles({ files, onSelect, onDelete }) {
   return (
     <div className="bg-white rounded-lg shadow">
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-4">Downloaded Files</h2>
         <div className="space-y-2">
           {files.map((file, index) => {
-            const isVideo = file.type === 'video'
+            const isVideo = file.type === 'mp4'
             
             return (
               <div
                 key={index}
-                className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer"
-                onClick={() => onSelect({
-                  isLocal: true,
-                  path: file.path,
-                  type: file.type
-                })}
+                className="flex items-center justify-between p-2 hover:bg-gray-50 rounded"
               >
-                <div className="flex items-center">
+                <div 
+                  className="flex items-center cursor-pointer flex-grow"
+                  onClick={() => onSelect({
+                    isLocal: true,
+                    path: file.path,
+                    type: file.type
+                  })}
+                >
                   {isVideo ? (
                     <FiVideo className="h-5 w-5 mr-2" />
                   ) : (
@@ -32,6 +34,12 @@ function DownloadedFiles({ files, onSelect }) {
                     </p>
                   </div>
                 </div>
+                <button
+                  onClick={() => onDelete(file.path)}
+                  className="p-2 text-red-500 hover:bg-red-50 rounded"
+                >
+                  <FiTrash2 className="h-5 w-5" />
+                </button>
               </div>
             )
           })}

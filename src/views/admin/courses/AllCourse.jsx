@@ -8,7 +8,7 @@ import Loader from "@/components/Loader";
 import { toast } from "react-hot-toast";
 import CourseCard from "@/components/card/CourseCard";
 import Banner from "./Banner";
-
+import { courseData } from "@/assets/img/data";
 const AllCourse = () => {
   const [findClass, setfindClass] = useState("KG 1");
   const [id, setId] = useState("6603e6e06e7e286c38da1ea1");
@@ -39,7 +39,7 @@ const AllCourse = () => {
   useEffect(() => {
     if (userInfo.role === "schoolAdmin") {
       setId(userInfo._id);
-    } else if (userInfo.role === "teacher") {
+    } else if (userInfo.role === "learner") {
       setId(userInfo.schoolID);
     }
   }, []);
@@ -51,18 +51,21 @@ const AllCourse = () => {
     isError,
     error,
   } = useGetCoursesQuery({
-    class: `${findClass}`,
+    class: `${ userInfo.role === "schoolAdmin" || userInfo.role === "admin"
+    ? findClass
+    : userInfo?.class}`,
     term: `${term}`,
     school: `${
       userInfo.role === "schoolAdmin"
         ? userInfo._id
-        : userInfo.role === "teacher"
+        : userInfo.role === "learner"
         ? userInfo.schoolID
         : id
-    }`,
+    }`,      name: userInfo?.subjectAccess,
+
   });
   console.log("userInfo", userInfo);
-  console.log("courses", courses);
+  // console.log("courses", courses);
   if (isLoading) {
     <Loader />;
   }
@@ -113,7 +116,7 @@ const AllCourse = () => {
                 ))}
               </select>
             </div>
-            <div>
+          {userInfo.role === "schoolAdmin" || userInfo.role === "admin" ? <div>
               <label
                 htmlFor="name"
                 className="text-sm block font-medium text-gray-700"
@@ -134,7 +137,7 @@ const AllCourse = () => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div>:null}
           </div>
         </div>
 
