@@ -34,11 +34,11 @@ function ContentView() {
           </div>
           <div className="p-4 rounded-xl shadow-sm" style={{ backgroundColor: "#b2ebf2" }}>
             <FaGraduationCap className="text-3xl mb-2 mx-auto" style={{ color: "#d97706" }} />
-            <h3 className="text-xl font-semibold" style={{ color: "#1228A4" }}>Certifications</h3>
-            <p style={{ color: "#1228A4" }}>Earn certificates for your achievements.</p>
+            <h3 className="text-xl font-semibold" style={{ color: "#1228A4" }}>Test</h3>
+            <p style={{ color: "#1228A4" }}>Practice and assess your knowledge.</p>
           </div>
         </div>
-        <button className="py-2 px-6 rounded-full shadow-md transition duration-300" style={{ backgroundColor: "#d97706", color: "white" }}>
+        <button onClick={()=> navigate("/all-course")} className="py-2 px-6 rounded-full shadow-md transition duration-300" style={{ backgroundColor: "#d97706", color: "white" }}>
           Get Started
         </button>
       </div>

@@ -7,6 +7,9 @@ import creative from "@/assets/img/creative.jpg"
 import diction from "@/assets/img/diction.jpg"
 import library from "@/assets/img/library.jpg"
 import math from "@/assets/img/math.jpg"
+import financial from "@/assets/img/financial.jpg"
+import digital from "@/assets/img/digital.jpg"
+import coding from "@/assets/img/coding.jpg"
 
 
 const CourseCard = ({
@@ -39,9 +42,12 @@ src={
   title.toLowerCase().includes("math") ? math :
   title.toLowerCase().includes("libra") ? library :
   title.toLowerCase().includes("diction") ? diction :
+  title.toLowerCase().includes("digital") ? digital :
+  title.toLowerCase().includes("financial") ? financial :
+  title.toLowerCase().includes("coding") ? coding :
   creative
 }
-            className="mb-3 h-full w-full rounded-xl 3xl:h-full 3xl:w-full"
+            className="mb-3 h-48 w-full rounded-xl 3xl:h-full 3xl:w-full"
             alt=""
           />
        
@@ -60,7 +66,7 @@ src={
             <p className="text-lg font-bold text-navy-700 dark:text-white">
               {title}
             </p>
-            <p className="text-sm mt-1 font-medium text-gray-600 md:mt-2">
+            <p className="text-sm mt-1 font-medium text-gray-900 md:mt-2">
               Class {classFor}
             </p>
           </div>

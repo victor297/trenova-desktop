@@ -22,26 +22,26 @@ const Banner = () => {
       {/* Name and position */}
       <div className="mt-16 flex flex-col items-center">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-sm font-normal text-gray-600">Welcome Back</p>
+          <p className="text-sm font-normal text-gray-900">Welcome Back</p>
         </div>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {userInfo.name}
         </h4>
-        <p className="text-base font-normal text-gray-600">{userInfo.email}</p>
+        <p className="text-base font-normal text-gray-900">{userInfo.email}</p>
       </div>
 
       {/* Post followers */}
       <div className="mb-3 mt-6 flex gap-4 md:!gap-14">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-sm font-normal text-gray-600">{userInfo.role}</p>
+          <p className="text-sm font-normal text-gray-900">{userInfo.role}</p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-sm font-normal text-gray-600">
+          <p className="text-sm font-normal text-gray-900">
             {userInfo.username}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <p className="text-sm font-normal text-gray-600">
+          <p className="text-sm font-normal text-gray-900">
             {userInfo?.class}
           </p>
         </div>

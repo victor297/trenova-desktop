@@ -73,7 +73,7 @@ function QuestionDetail({ questions }) {
                     <FaVideo className="text-blue-500 text-xl" />
                     <div>
                       <h3 className="font-semibold">{lesson.title}</h3>
-                      {/* <p className="text-gray-600">{lesson.number}</p> */}
+                      {/* <p className="text-gray-900">{lesson.number}</p> */}
                     </div>
                   </div>
 

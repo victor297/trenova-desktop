@@ -50,7 +50,7 @@ export default function SignIn() {
     <div className="mb-16 mt-8 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       <div className="w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="text-4xl mb-2.5 font-bold text-navy-700 dark:text-white">Sign In</h4>
-        <p className="text-base mb-4 ml-1 text-gray-600">
+        <p className="text-base mb-4 ml-1 text-gray-900">
           Enter your Username and password to sign in!
         </p>
 
@@ -62,7 +62,7 @@ export default function SignIn() {
             }`}
             onClick={() => setActiveTab("user")}
           >
-            User Login
+            School Login
           </button>
           <button
             className={`px-4 py-2 w-1/2 text-center border-b-2 ${
@@ -99,7 +99,7 @@ export default function SignIn() {
             />
             <button
               type="button"
-              className="absolute right-3 top-14 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              className="absolute right-3 top-14 transform -translate-y-1/2 text-gray-500 hover:text-gray-900"
               onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? <FiEyeOff size={20} /> : <FaEye size={20} />}
@@ -123,7 +123,7 @@ export default function SignIn() {
         </form>
 
         <div className="mt-4">
-          <span className="text-sm font-medium text-navy-700 dark:text-gray-600">
+          <span className="text-sm font-medium text-navy-700 dark:text-gray-900">
             Learner Not registered yet?
           </span>
           <Link

@@ -17,7 +17,9 @@ export const courseApiSlice = apiSlice.injectEndpoints({
         if (params.class) queryString += `class=${params.class}&`;
         if (params.term) queryString += `term=${params.term}&`;
         if (params.school) queryString += `school=${params.school}&`;
-        if (params.name) queryString += `name=${params.name}&`; // Already comma-separated
+        if (params.name) queryString += `name=${params.name}&`; 
+        queryString += `isPublish=true&`;
+
 
         const url = `${COURSES_URL}${queryString ? `?${queryString}` : ""}`;
         return { url };
@@ -32,7 +34,8 @@ export const courseApiSlice = apiSlice.injectEndpoints({
         if (params.school) queryString += `school=${params.school}&`;
         if (params.term) queryString += `term=${params.term}&`; // Already comma-separated
         if (params.name) queryString += `name=${params.name}&`; // Already comma-separated
-    
+        queryString += `isPublish=true&`;
+
         const url = `${COURSES_URL}${queryString ? `?${queryString}` : ""}`;
         return { url };
       },

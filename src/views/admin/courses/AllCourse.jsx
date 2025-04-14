@@ -89,7 +89,7 @@ const AllCourse = () => {
             <div>
               <label
                 htmlFor="name"
-                className="text-sm block font-medium text-gray-700"
+                className="text-sm block font-medium text-gray-900"
               >
                 Term
               </label>
@@ -119,7 +119,7 @@ const AllCourse = () => {
           {userInfo.role === "schoolAdmin" || userInfo.role === "admin" ? <div>
               <label
                 htmlFor="name"
-                className="text-sm block font-medium text-gray-700"
+                className="text-sm block font-medium text-gray-900"
               >
                 Class
               </label>

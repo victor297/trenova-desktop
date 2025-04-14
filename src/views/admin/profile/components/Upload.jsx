@@ -11,7 +11,7 @@ const Upload = () => {
           <h4 className="text-xl font-bold text-brand-500 dark:text-white">
             Upload Files
           </h4>
-          <p className="text-sm mt-2 font-medium text-gray-600">
+          <p className="text-sm mt-2 font-medium text-gray-900">
             PNG, JPG and GIF files are allowed
           </p>
         </button>
@@ -21,7 +21,7 @@ const Upload = () => {
         <h5 className="text-left text-xl font-bold leading-9 text-navy-700 dark:text-white">
           Complete Your Profile
         </h5>
-        <p className="leading-1 text-base mt-2 font-normal text-gray-600">
+        <p className="leading-1 text-base mt-2 font-normal text-gray-900">
           Stay on the pulse of distributed projects with an anline whiteboard to
           plan, coordinate and discuss
         </p>

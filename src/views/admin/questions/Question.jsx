@@ -89,7 +89,7 @@ const Question = () => {
           <h4 className="text-2xl ml-1 font-bold text-navy-700 dark:text-white">Filter Questions</h4>
           <div className="mb-4 flex gap-3">
             <div>
-              <label htmlFor="term" className="text-sm block font-medium text-gray-700">
+              <label htmlFor="term" className="text-sm block font-medium text-gray-900">
                 Term
               </label>
               <select
@@ -117,7 +117,7 @@ const Question = () => {
             </div>
             {userInfo?.role === "schoolAdmin" || userInfo?.role === "admin"
               ? <div>
-                <label htmlFor="class" className="text-sm block font-medium text-gray-700">
+                <label htmlFor="class" className="text-sm block font-medium text-gray-900">
                   Class
                 </label>
                 <select
@@ -145,10 +145,10 @@ const Question = () => {
             filteredQuestions?.length > 0 ? (
               <QuestionList questions={filteredQuestions} />
             ) : (
-              <p className="text-gray-600">No questions found for the selected filters.</p>
+              <p className="text-gray-900">No questions found for the selected filters.</p>
             )
           ) : (
-            <p className="text-gray-600">Please select a term and class to filter questions.</p>
+            <p className="text-gray-900">Please select a term and class to filter questions.</p>
           )}
         </div>
       </div>

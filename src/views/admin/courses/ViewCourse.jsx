@@ -107,26 +107,45 @@ const navigate = useNavigate()
       }))
     }
   }
+  // const handleWeeklyDownload = async (course, selectedWeek) => {
+  //   try {
+  //     const downloadPromises = [];
+      
+  //     for (const week of course.content) {
+  //       if (week.week === selectedWeek) {
+  //         for (const lesson of week.lessons) {
+  //           if (downloads[lesson.content]?.status !== 'completed') {
+  //             const downloadPromise = handleDownload(lesson, {
+  //               class: course.class,
+  //               term: course.term,
+  //               week: selectedWeek,
+  //             });
+  //             downloadPromises.push(downloadPromise);
+  //           }
+  //         }
+  //       }
+  //     }
+  
+  //     await Promise.all(downloadPromises);
+  //   } catch (error) {
+  //     console.error('Error in weekly download:', error);
+  //   }
+  // };
   const handleWeeklyDownload = async (course, selectedWeek) => {
     try {
-      const downloadPromises = [];
-      
       for (const week of course.content) {
         if (week.week === selectedWeek) {
           for (const lesson of week.lessons) {
             if (downloads[lesson.content]?.status !== 'completed') {
-              const downloadPromise = handleDownload(lesson, {
+              await handleDownload(lesson, {
                 class: course.class,
                 term: course.term,
                 week: selectedWeek,
               });
-              downloadPromises.push(downloadPromise);
             }
           }
         }
       }
-  
-      await Promise.all(downloadPromises);
     } catch (error) {
       console.error('Error in weekly download:', error);
     }
@@ -205,7 +224,7 @@ const navigate = useNavigate()
   // console.log("courseData", course);
   return (
     <div className="container mx-auto px-4">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className=" gap-8">
       <div>
         <div className="flex items-center mb-6">
           <Link to="/" className="flex items-center text-blue-500 hover:text-blue-600">
@@ -249,12 +268,21 @@ const navigate = useNavigate()
                     >
                        {week.week} 
                 </h3>
-                <button  className="bg-blue text-white py-1 px-4 rounded-lg"   onClick={() => handleWeeklyDownload(course, week.week)}> Download {week.week}</button>
+
+                <div className="flex gap-6">
+
+                <button  className="bg-blue text-white py-1 px-4 rounded-lg"   onClick={() => handleWeeklyDownload(course, week.week)}> Download  Topic</button>
                 {expandedWeeks[week._id] ? (
-                  <FiChevronDown className="h-5 w-5 text-gray-500" />
+                  <div className="flex justify-center items-center">close
+                    <FiChevronDown className="h-5 w-5 text-gray-500" />
+                    </div>
                 ) : (
+                    
+                  <div className="flex justify-center items-center">Expand
                   <FiChevronRight className="h-5 w-5 text-gray-500" />
+                  </div>
                 )}
+                </div>
               </div>
               
               {expandedWeeks[week._id] && (
@@ -280,7 +308,11 @@ const navigate = useNavigate()
                             )}
                             <span>{lesson.title}</span>
                           </div>
-
+                          <div className="flex gap-6">
+                            <button     onClick={() => handleContentSelect({
+                              url: lesson.content,
+                              type: isVideo ? 'video' : 'pdf'
+                            })} className="py-1 px-4 bg-gold text-white rounded-lg"> View</button>
                           <div className="flex items-center space-x-2">
                             {download?.progress > 0 && download?.progress < 100 && (
                               <div className="flex items-center">
@@ -329,6 +361,7 @@ const navigate = useNavigate()
                               </button>
                             )}
                           </div>
+</div>
                         </div>
                       )
                     })}
@@ -340,7 +373,7 @@ const navigate = useNavigate()
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
+      {/* <div className="bg-white rounded-lg shadow p-6">
         {selectedContent ? (
           selectedContent.type === 'video' ? (
             <VideoPlayer url={selectedContent.url} />
@@ -352,7 +385,7 @@ const navigate = useNavigate()
             Select content to view
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   </div>
   );

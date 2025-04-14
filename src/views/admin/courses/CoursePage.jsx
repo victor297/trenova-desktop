@@ -67,71 +67,91 @@ function CoursePage() {
 
   const handleWeeklyDownload = async (course, selectedWeek) => {
     try {
-      const downloadPromises = [];
-      
       for (const week of course.content) {
         if (week.week === selectedWeek) {
           for (const lesson of week.lessons) {
             if (downloads[lesson.content]?.status !== 'completed') {
-              const downloadPromise = handleDownload(lesson, {
+              await handleDownload(lesson, {
                 class: course.class,
                 term: course.term,
                 week: selectedWeek,
               });
-              downloadPromises.push(downloadPromise);
             }
           }
         }
       }
-  
-      await Promise.all(downloadPromises);
     } catch (error) {
       console.error('Error in weekly download:', error);
     }
   };
   
-  const handleBatchDownload = async (course) => {
-    setIsBatchDownloading(true)
-    try {
-      const downloadPromises = []  // Store all promises
+  // const handleWeeklyDownload = async (course, selectedWeek) => {
+  //   try {
+  //     const downloadPromises = [];
+      
+  //     for (const week of course.content) {
+  //       if (week.week === selectedWeek) {
+  //         for (const lesson of week.lessons) {
+  //           if (downloads[lesson.content]?.status !== 'completed') {
+  //             const downloadPromise = handleDownload(lesson, {
+  //               class: course.class,
+  //               term: course.term,
+  //               week: selectedWeek,
+  //             });
+  //             downloadPromises.push(downloadPromise);
+  //           }
+  //         }
+  //       }
+  //     }
   
-      for (const week of course.content) {
-        for (const lesson of week.lessons) {
-          if (downloads[lesson.content]?.status !== 'completed') {
-            const downloadPromise = handleDownload(lesson, {
-              class: course.class,
-              term: course.term,
-              week: week.week
-            })
-            downloadPromises.push(downloadPromise) // Collect all download promises
-          }
-        }
-      }
-  
-      await Promise.all(downloadPromises) // Wait for all downloads to complete
-    } finally {
-      setIsBatchDownloading(false)
-    }
-  }
+  //     await Promise.all(downloadPromises);
+  //   } catch (error) {
+  //     console.error('Error in weekly download:', error);
+  //   }
+  // };
   
   // const handleBatchDownload = async (course) => {
   //   setIsBatchDownloading(true)
   //   try {
+  //     const downloadPromises = []  // Store all promises
+  
   //     for (const week of course.content) {
   //       for (const lesson of week.lessons) {
   //         if (downloads[lesson.content]?.status !== 'completed') {
-  //           await handleDownload(lesson, {
+  //           const downloadPromise = handleDownload(lesson, {
   //             class: course.class,
   //             term: course.term,
   //             week: week.week
   //           })
+  //           downloadPromises.push(downloadPromise) // Collect all download promises
   //         }
   //       }
   //     }
+  
+  //     await Promise.all(downloadPromises) // Wait for all downloads to complete
   //   } finally {
   //     setIsBatchDownloading(false)
   //   }
   // }
+  
+  const handleBatchDownload = async (course) => {
+    setIsBatchDownloading(true)
+    try {
+      for (const week of course.content) {
+        for (const lesson of week.lessons) {
+          if (downloads[lesson.content]?.status !== 'completed') {
+            await handleDownload(lesson, {
+              class: course.class,
+              term: course.term,
+              week: week.week
+            })
+          }
+        }
+      }
+    } finally {
+      setIsBatchDownloading(false)
+    }
+  }
 
   const handleCancelDownload = async (url) => {
     const success = await window.electron.invoke('cancelDownload', url)
